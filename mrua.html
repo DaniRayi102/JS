@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #display{
+        border: 2px solid red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculo de la posicion de un objeto</h1>
+
+    <button onclick="calculaPOS()">
+        Calcula
+    </button>
+    <button onclick="calculaPosicionFormulario()">
+        CalculaMRUA
+    </button>
+    <div id="display">
+
+    </div>
+
+    <h1>Formulario posicion</h1>
+    <label for="aceleracion">aceleracion
+    <input type="number" id="aceleracion"></label>
+
+    <label for="tiempo">tiempo
+    <input type="number" id="tiempo"></label>
+    <script>
+        function calculaPosicionFormulario(){
+            let aceleracion= document.getElementById("aceleracion").value;
+            let tiempo= document.getElementById("tiempo").value;
+            let posicion = calcularPosicionMRUA(aceleracion, tiempo);
+            let display = document.getElementById("display");
+            display.innerHTML="la posicion X es "+posicion+ " metros "+alcanzaEstratosfera(posicion);
+        }
+
+        function calcularPosicionMRUA(a,t){
+            posicion = a* (Math.pow(t,2))/2;
+            return posicion;
+        }
+
+        function calculaPOS(){
+            let aceleracion = prompt("dime la aceleracion");
+            let tiempo = prompt ("dime el tiempo");
+            let posicion = calcularPosicionMRUA(aceleracion, tiempo);
+            alert("La posicion de X es "+posicion+ " metros");
+        }
+
+        function alcanzaEstratosfera(x){
+            if (x>10000){
+                return (", alcanza la estratosfera")
+            } else {
+                return (", no alcanza la estratosfera")
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="diceNotaFormulario()">
+
+    </button>
+    <div id="display">
+        Nota
+        <input type="number" name="" id="nota">
+    </div>
+    <script>
+        
+        function diceNota(){
+            let nota;
+        do{ 
+            nota = prompt("Dime la nota");
+        }while{
+            (isNaN(nota) || nota <0 || nota>10);
+        }
+        }
+        function notaAtexto(nota){
+            if (nota < 5){
+                alert("Insuficiente");
+            } if (nota = 5){
+                alert("Suficiente");
+            } if (nota = 6){
+                alert("Bien");
+            } if (nota = 7){
+                alert("Notable Bajo");
+            } if (nota = 8){
+                alert("Notable Alto");
+            } if (nota = 9){
+                alert("Sobresaliente");
+            } if (nota = 10){
+                alert("SUPER SOBRESALIENTE");
+            }
+        }
+
+        function diceNotaFormulario(){
+            let nota = document.getElementById("nota").value;
+            let display = document.getElementById("display");
+            display.innerHTML = "<h1>" + notaAtexto(nota);
+        }
+    </script>
+</body>
+</html>

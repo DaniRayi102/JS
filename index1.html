@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #display{
+            border: 2px solid red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Introduccion a Java Script</h1>
+    <button onclick="suma()">
+        Pulse Aqui Para sumar
+    </button>
+    <button onclick="login()">
+        Logueate
+    </button>
+    <button onclick="compruebaPar()">
+        PAR
+    </button>
+    <button onclick="compruebaEdad()">
+        EDAD
+    </button>
+    <button onclick="calculaIMC()">
+        IMC
+    </button>
+    <button onclick="calcularMedia()">
+        Media
+    </button>
+    <button onclick="calculaAreaTriangulo()">
+        Area triangulo
+    </button>
+    <button onclick="calculaPrecioConIva()">
+        IVA
+    </button>
+
+    <h2>Cálculo del IVA de un producto</h2>
+    Precio sin IVA <input value="100" type="number" id="precio-sin-iva">
+    Tipo <input type="number" max="3" min="1" value="3" id="tipo">
+    <button onclick="calculaPrecioConIvaFormulario()">Calculo del precio con IVA</button>
+    <p id="display">
+
+    </p>
+    <script>
+        function suma (){
+            alert("Bienvenido a mi pagina");
+            let n1=prompt("Dime un numero");
+                if(isNaN(n1)){
+                    alert(n1+" NO es un numero");
+                    return;
+            } 
+
+            let n2=prompt("Dime otro numero");
+                if(isNaN(n2)){
+                    alert(n2+" NO es un numero");
+                    return;
+                } 
+            let suma=Number(n1)+Number(n2);
+                alert("La suma de " +n1+ " y "+n2+ " es " +suma);
+        }
+        function login(){
+            let usuario=prompt("Introduzca Usuario");
+            let contraseña=prompt("Introduzca Contraseña");
+            if(usuario == "admin" && contraseña=="1234"){
+                alert("Bienvenido a mi pagina");
+            }else{
+                alert("Acceso denegado");
+            }
+        }
+        function esPar(n){
+            if (n%2==0){
+                return true;
+            }else{
+                return false;
+            }
+            
+        }
+        function compruebaPar(){
+            let numero
+            do{
+                numero=prompt("Dime un numero");
+            }while(isNaN(numero));
+            if (esPar(numero)){
+                alert("Es Par");
+            }else{
+                alert("Es impar");
+            }  
+        }
+        function Edad(num){
+            if (num >=18){
+                return true;
+            }else{
+                return false;
+            }
+        }
+        function compruebaEdad(){
+            let edad=prompt("Dime tu edad");
+            if (isNaN(edad)){
+                alert("ERROR!!! NO ES UNA EDAD VALIDA");
+                return;
+            }
+            if (Edad(edad)){
+                alert("Bienvenido a mi pagina");
+            }else{
+                alert("No puedes acceder, no eres mayor de edad");
+            }  
+        }
+        function imc(m,h){
+            indice=m/Math.pow(h,2);/** esto es para elevar un numero (potencia)**/
+            return indice;
+        }
+
+        function calculaIMC(){
+            masa=prompt("dime tu peso");
+            altura=prompt("dime tu altura");
+            alert (imc(masa, altura));
+        }
+        
+        function media(n1,n2,n3){
+            media=((Number(n1)+Number(n2)+Number(n3))/3);
+            return media;
+        }
+
+        function calcularMedia(){
+            nota1=prompt("dime una nota");
+            nota2=prompt("dime otra nota");
+            nota3=prompt("dime otra nota mas");
+            alert (media(nota1, nota2, nota3));
+        }
+        function areaTriangulo(b,h){
+            let area = ((Number (b)* Number (h)) /2);
+            return area;
+        }
+
+        function calculaAreaTriangulo(){
+            let base = prompt("Dime la base");
+            let altura = prompt("Dime tu altura");
+            let area=areaTriangulo (altura, base);
+            alert ("La base del triangulo: "+base+" y la altura: " +altura+ " el area es: " +area);
+        }
+
+        function calculaPrecioConIva(){
+            let precio=prompt("Dime el precio sin IVA");
+            let tipo=prompt("Dime el tipo ( 1/2/3)");
+            let precioIva = precioConIva(precio,tipo);
+            alert ("Precio con IVA " +precioIva);
+            if (PuedePagarEfectivo (precioIva)) {
+                alert ("Puede pagar en efectivo");
+            } else {
+                alert ("No puede pagar en efectivo");
+            }
+        }
+
+        function precioConIva(precioSinIva,tipo){
+            if (tipo==1){
+            return precioSinIva*1.05;
+            }
+            if (tipo==2){
+            return precioSinIva*1.10;
+            }
+            if (tipo==3){
+            return precioSinIva*1.21;
+            }
+        }
+
+        function PuedePagarEfectivo(cantidad){
+            if (cantidad<2000) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        function calculaPrecioConIvaFormulario(){
+            let precioSinIva = document.getElementById("precio-sin-iva");
+            let precioSinIvaValor = precioSinIva.value;
+            let tipoValor = document.getElementById("tipo").value;
+            let precioIva = precioConIva(precioSinIvaValor,tipoValor);
+            let display = document.getElementById("display");
+            display.innerHTML = "El precio con IVA es: " +precioIva;
+
+        }
+    </script>
+</body>
+</html>
